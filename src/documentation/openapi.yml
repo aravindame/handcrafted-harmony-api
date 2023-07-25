@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Employee API
+  version: 1.0.0-oas3.1
+  description: A simple CRUD API for managing employees
+paths:
+  /employee:
+    get:
+      tags:
+          - "Employee"
+      summary: Get a list of all employees
+      operationId: listAllEmployeeHandler
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employees:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Employee'
+    post:
+      tags:
+          - "Employee"
+      summary: Add a new employee
+      operationId: addEmployeeHandler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+  /employee/{employeeId}:
+    put:
+      tags:
+          - "Employee"
+      summary: Update employee by ID
+      operationId: updateEmployeeHandler
+      parameters:
+        - in: path
+          name: employeeId
+          required: true
+          schema:
+            type: string
+          description: Employee ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    delete:
+      tags:
+          - "Employee"
+      summary: Delete employee by ID
+      operationId: deleteEmployeeHandler
+      parameters:
+        - in: path
+          name: employeeId
+          required: true
+          schema:
+            type: string
+          description: Employee ID
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: afaee345gfga2hghhr23aho742sdx
+        first_name:
+          type: string
+          minLength: 6
+          maxLength: 10
+          example: Lorem
+        last_name:
+          type: string
+          minLength: 6
+          maxLength: 10
+          example: Ipsum
+        email:
+          type: string
+          format: email
+        number:
+          type: string
+          example: '+94772347008'
+        gender:
+          type: string
+          example: 'M | F'
+        photo:
+          type: string
+          example: 'https://image.com/example/user-image'
