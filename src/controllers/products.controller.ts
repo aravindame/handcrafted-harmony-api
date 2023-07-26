@@ -13,8 +13,8 @@ export async function createProducts(req: Request, res: Response): Promise<void>
     res.status(201).send(product);
     logger.info('Product created successfully');
   } catch (error) {
-    logger.error(error);
     res.status(400).send(error);
+    logger.error(error);
   }
 }
 

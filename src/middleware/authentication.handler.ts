@@ -1,4 +1,4 @@
-import { auth } from 'express-oauth2-jwt-bearer';
+import { auth } from 'express-openid-connect';
 import { Handler } from 'express';
 
 import * as dotenv from 'dotenv';
@@ -12,7 +12,10 @@ import * as dotenv from 'dotenv';
  * @param next - The next middleware function in the Express middleware chain.
  */
 export const authenticated: Handler = auth({
-  audience: process.env.AUDIENCE,
-  issuerBaseURL: process.env.ISSUER_BASE_URL,
-  tokenSigningAlg: process.env.TOKEN_SIGNING_ALG,
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.AUTH0_CLIENT_SECRET,
+  baseURL: process.env.AUTH0_BASE_URL,
+  clientID: process.env.AUTH0_CLIENT_ID,
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL
 });

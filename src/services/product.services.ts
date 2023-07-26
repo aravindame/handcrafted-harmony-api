@@ -1,7 +1,6 @@
 import { Product } from "../models/products.model";
 import { IProduct } from "../types/products.interface";
 import { productValidator } from "../validators/product.validator";
-import { error } from "console";
 import Joi from "joi";
 
 /**
@@ -28,7 +27,7 @@ export async function createProduct(productData: IProduct): Promise<IProduct> {
   try {
     const result: Joi.ValidationResult<any> = productValidator(productData);
     if(result?.error){
-      throw error;
+      throw result?.error;
     }
     const createdProduct = await Product.create(productData);
     return createdProduct;

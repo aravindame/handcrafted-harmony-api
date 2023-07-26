@@ -12,7 +12,6 @@ export async function createOrders(req: Request, res: Response): Promise<void> {
     const order = await createOrder(req.body);
     res.status(201).send({order});
   } catch (error) {
-    console.log(error)
     res.status(400).send({error});
     logger.error(error);
   }
