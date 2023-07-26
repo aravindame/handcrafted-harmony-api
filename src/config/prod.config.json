@@ -2,7 +2,7 @@
     "api-prefix": "/api/v1/",
     "cors": {
         "origin": [
-            "https://*.vercel.app"
+            "https://handcrafted-harmony-ui.vercel.app"
         ],
         "optionsSuccessStatus": 200
     },
