@@ -6,12 +6,8 @@
   "scripts": {
     "start": "node build/src/index.js",
     "dev": "nodemon",
-    "clean": "rimraf coverage build tmp",
-    "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint . --ext .ts --ext .mts",
-    "test": "jest --watchAll",
-    "prettier": "prettier --config .prettierrc --write ."
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "cors": "^2.8.5",
