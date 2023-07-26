@@ -1,113 +1,238 @@
 openapi: 3.0.0
 info:
-  title: Employee API
-  version: 1.0.0-oas3.1
-  description: A simple CRUD API for managing employees
+  title: Handcrafted Harmony API
+  version: 1.0.0
+  description: API for managing products and orders in an e-commerce application called Handcrafted Harmony
+
 paths:
-  /employee:
+  /products:
     get:
       tags:
-          - "Employee"
-      summary: Get a list of all employees
-      operationId: listAllEmployeeHandler
+        - "Product"
+      summary: Get a list of all products
+      operationId: listAllProducts
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  employees:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Employee'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
     post:
       tags:
-          - "Employee"
-      summary: Add a new employee
-      operationId: addEmployeeHandler
+        - "Product"
+      summary: Add a new product
+      operationId: addProduct
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Employee'
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Employee'
-  /employee/{employeeId}:
-    put:
+                $ref: '#/components/schemas/Product'
+
+  /products/{productId}:
+    get:
       tags:
-          - "Employee"
-      summary: Update employee by ID
-      operationId: updateEmployeeHandler
+        - "Product"
+      summary: Get a product by ID
+      operationId: getProductById
       parameters:
         - in: path
-          name: employeeId
+          name: productId
           required: true
           schema:
             type: string
-          description: Employee ID
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Employee'
+          description: Product ID
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Employee'
-    delete:
+                $ref: '#/components/schemas/Product'
+
+    put:
       tags:
-          - "Employee"
-      summary: Delete employee by ID
-      operationId: deleteEmployeeHandler
+        - "Product"
+      summary: Update a product by ID
+      operationId: updateProductById
       parameters:
         - in: path
-          name: employeeId
+          name: productId
           required: true
           schema:
             type: string
-          description: Employee ID
+          description: Product ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+    delete:
+      tags:
+        - "Product"
+      summary: Delete a product by ID
+      operationId: deleteProductById
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          schema:
+            type: string
+          description: Product ID
       responses:
         '204':
           description: No Content
+
+  /orders:
+    get:
+      tags:
+        - "Order"
+      summary: Get a list of all orders
+      operationId: listAllOrders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+
+    post:
+      tags:
+        - "Order"
+      summary: Create a new order
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /analytics:
+    get:
+      tags:
+        - "Analytics"
+      summary: Get analytics data
+      operationId: getAnalyticsData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalyticsData'
+
 components:
   schemas:
-    Employee:
+    Product:
       type: object
       properties:
         _id:
           type: string
-          example: afaee345gfga2hghhr23aho742sdx
-        first_name:
+          example: abc123
+        name:
           type: string
-          minLength: 6
-          maxLength: 10
-          example: Lorem
-        last_name:
+          example: "Product Name"
+        description:
           type: string
-          minLength: 6
-          maxLength: 10
-          example: Ipsum
-        email:
+          example: "Product description"
+        price:
+          type: number
+          format: float
+          example: 19.99
+        imageUrl:
           type: string
-          format: email
-        number:
+          example: "https://example.com/product_image.jpg"
+
+    Order:
+      type: object
+      properties:
+        _id:
           type: string
-          example: '+94772347008'
-        gender:
+          example: xyz789
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        createdAt:
           type: string
-          example: 'M | F'
-        photo:
+          format: date-time
+          example: "2023-07-19T12:34:56Z"
+        updatedAt:
           type: string
-          example: 'https://image.com/example/user-image'
+          format: date-time
+          example: "2023-07-19T12:34:56Z"
+
+    OrderItem:
+      type: object
+      properties:
+        productId:
+          type: string
+          example: abc123
+        quantity:
+          type: integer
+          example: 2
+        title:
+          type: string
+          example: "Product Title"
+        price:
+          type: number
+          format: float
+          example: 9.99
+        imageUrl:
+          type: string
+          example: "https://example.com/product_image.jpg"
+    AnalyticsData:
+      type: object
+      properties:
+        id:
+          type: string
+          example: abc123
+        totalQuantity:
+          type: number
+          example: 10
+        sumPrice:
+          type: number
+          format: float
+          example: 199.9
+        title:
+          type: string
+          example: "Product Title"
+        price:
+          type: number
+          format: float
+          example: 19.99
+        imageUrl:
+          type: string
+          example: "https://example.com/product_image.jpg"
