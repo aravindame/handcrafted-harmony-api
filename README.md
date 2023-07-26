@@ -22,7 +22,7 @@ Handcrafted Crafts is a web application for a small business that sells handmade
 
 ## Installation
 
-1. Clone the repository: `git clone [repository-url]`
+1. Clone the repository: `git clone git@github.com:aravindame/handcrafted-harmony-api.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm run dev`
 

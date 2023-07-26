@@ -4,7 +4,7 @@
   "description": "Api for the web store that sells handmade crafts online",
   "author": "Aravinda Meewalaarachchi",
   "scripts": {
-    "start": "node build/src/index.js",
+    "start": "nodemon",
     "dev": "nodemon",
     "build": "tsc -p tsconfig.json",
     "test": "jest --watchAll"
