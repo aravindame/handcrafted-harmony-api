@@ -44,7 +44,7 @@
     "typescript": "~5.0"
   },
   "engines": {
-    "node": ">= 18.12 <19"
+    "node": "18.12.1"
   },
   "volta": {
     "node": "18.12.1"
