@@ -1,0 +1,28 @@
+{
+    "api-prefix": "/api/v1/",
+    "cors": {
+        "origin": [
+            "http://localhost:3000"
+        ],
+        "optionsSuccessStatus": 200
+    },
+    "rateLimit": {
+        "windowMs": 60000,
+        "max": 100
+    },
+    "logger": {
+        "level": "info",
+        "label": "Dev env custom format",
+        "timestamp": {
+            "format": "MMM-DD-YYYY HH:mm:ss"
+        },
+        "levelInfo": {
+            "level": "info",
+            "filename": "logs/application.info.log"
+        },
+        "levelError": {
+            "level": "error",
+            "filename": "logs/application.error.log"
+        }
+    }
+}
