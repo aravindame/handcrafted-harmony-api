@@ -1,19 +1,8 @@
 import { Product } from '../models/products.model';
 import { Order } from '../models/orders.model';
 import { IProduct } from 'src/types/products.interface';
-import { IOrder } from 'src/types/orders.interface';
+import { IOrder, OrderItem } from 'src/types/orders.interface';
 import { orderValidator } from '../validators/order.validator';
-
-/**
- * Represents an item in the order.
- */
-type OrderItem = {
-    productId: string;
-    quantity: number;
-    title: string;
-    price: number;
-    imageUrl: string;
-}
 
 /**
  * Get all orders.
